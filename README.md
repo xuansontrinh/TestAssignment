@@ -1,6 +1,6 @@
 # TestAssignment
 This script is to attempt to build and log the failed tests from the two repositories:
-- `astminer`: git@github.com:JetBrains-Research/astminer.git"
+- `astminer`: git@github.com:JetBrains-Research/astminer.git
 - `morphia`: git@github.com:MorphiaOrg/morphia.git
 
 ## Prerequisites
