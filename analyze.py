@@ -25,7 +25,7 @@ class CommonUtils():
         subprocess.run(f'cd {reposPath} && git clone {REPOSITORIES[repoName]}', shell=True, capture_output=True)
 
     @staticmethod
-    def getLatestNCommits(path, N=2):
+    def getLatestNCommits(path, N=100):
         proc = subprocess.run(f'cd {path} && (git log -{N} --pretty=format:"%h" | cat)', shell=True, capture_output=True)
         if proc.returncode == 0: return proc.stdout.decode("utf-8").splitlines()
         else: return []    
@@ -98,9 +98,10 @@ for repoName in REPOSITORIES:
     for count, commit in enumerate(NLatestCommits):
         print(f"Analyzing {count + 1}-th latest commit of repo {repoName} ({commit}) ...")
         CommonUtils.checkoutCommit(repoPath, commit)
-        _, errors = handler.runBuild()
+        statusCode, errors = handler.runBuild()
         commitPath = os.path.join(repoResPath, commit)
         with open(commitPath, "w") as file:
+            file.write(statusCode + '\n')
             for error in errors:
                 file.write(error + '\n')
 
