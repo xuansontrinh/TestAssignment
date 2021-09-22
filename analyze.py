@@ -101,7 +101,7 @@ for repoName in REPOSITORIES:
         statusCode, errors = handler.runBuild()
         commitPath = os.path.join(repoResPath, commit)
         with open(commitPath, "w") as file:
-            file.write(statusCode + '\n')
+            file.write(f"statusCode\n")
             for error in errors:
                 file.write(error + '\n')
 
